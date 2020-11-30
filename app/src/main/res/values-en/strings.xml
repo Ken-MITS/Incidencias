@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Incidencia</string>
+
+    <string name="title_activity_menu">Menu</string>
+    <!-- Strings used for fragments for navigation -->
+    <string name="first_fragment_label">First Fragment</string>
+    <string name="second_fragment_label">Second Fragment</string>
+    <string name="next">Next</string>
+    <string name="previous">Previous</string>
+
+    <string name="hello_first_fragment">Hello first fragment</string>
+    <string name="hello_second_fragment">Hello second fragment. Arg: %1$s</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+
+    <!-- App Strings spanish -->
+    <!-- -->
+    <!-- Main Activity -->
+    <string name="bLogin">Log in</string>
+    <string name="logging">Logging In</string>
+    <string name="failed">Authentication failed\nPlease try again.</string>
+
+    <!-- Menu Fragment-->
+    <string name="bAdd">Add</string>
+    <string name="bDelete">Delete</string>
+    <string name="bListar">List</string>
+    <string name="bHelp">Help</string>
+
+    <!-- Dialog Box-->
+    <string name="dialogMessage">This will delete all incidences.\n¿Are you sure?</string>
+    <string name="dialogTitle">¡Warning!</string>
+    <string name="yes">Yes</string>
+    <string name="no">No</string>
+    <string name="toast">Inciendences wiped</string>
+
+    <!-- Add Fragment-->
+    <string name="title">Title</string>
+    <string-array name="priority">
+        <item>Low</item>
+        <item>Medium</item>
+        <item>High</item>
+    </string-array>
+
+    <!-- Settings -->
+    <string name="lang">Language</string>
+</resources>
