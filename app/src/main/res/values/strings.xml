@@ -17,8 +17,10 @@
     <!-- -->
     <!-- Main Activity -->
     <string name="bLogin">Acceder</string>
-    <string name="logging">Entrando</string>
-    <string name="failed">Error</string>
+    <string name="logging">Accediendo</string>
+    <string name="failed">Autentificación faillida</string>
+    <string name="remember">Recordar contrseña</string>
+    <string name="hint">Usuario</string>
 
     <!-- Menu Fragment-->
     <string name="bAdd">Añadir</string>
@@ -27,7 +29,7 @@
     <string name="bHelp">Ayuda</string>
 
     <!-- Dialog Box-->
-    <string name="dialogMessage">¿Esta acción borrará todas las incidencias.\n¿Estás seguro?</string>
+    <string name="dialogMessage">Esta acción borrará todas las incidencias. ¿Estás seguro?</string>
     <string name="dialogTitle">¡Aviso!</string>
     <string name="yes">Sí</string>
     <string name="no">No</string>
@@ -43,5 +45,9 @@
 
     <!-- Settings -->
     <string name="lang">Idioma</string>
+    <string name="choose">Escoge un idioma</string>
+    <string name="en">Inglés</string>
+    <string name="sp">Español</string>
+    <string name="logOut">Salir</string>
 
 </resources>

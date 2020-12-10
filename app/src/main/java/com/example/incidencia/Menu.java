@@ -43,7 +43,6 @@ public class Menu extends AppCompatActivity implements View.OnClickListener {
         builder = new AlertDialog.Builder(this);
 
         Button bAdd = findViewById(R.id.bAdd);
-        bAdd.setText(getResources().getString(R.string.bAdd));
         bAdd.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 Log.i("proves", "button afegir click.");
@@ -60,7 +59,6 @@ public class Menu extends AppCompatActivity implements View.OnClickListener {
 
 
         Button bList = findViewById(R.id.bList);
-        bList.setText(getResources().getString(R.string.bListar));
         bList.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -74,7 +72,6 @@ public class Menu extends AppCompatActivity implements View.OnClickListener {
         db =dbHelper.getWritableDatabase();
 
         Button bDelete = findViewById(R.id.bDelete);
-        bDelete.setText(getResources().getString(R.string.bDelete));
         bDelete.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -116,14 +113,12 @@ public class Menu extends AppCompatActivity implements View.OnClickListener {
             public void onClick(View v) {
                 FragmentManager menuManager = getSupportFragmentManager();
                 Fragment ajustes = new Ajustes();
-                menuManager.beginTransaction().replace(R.id.mainFragment, ajustes).commit();
+                menuManager.beginTransaction().replace(R.id.mainFragment, ajustes).addToBackStack(null).commit();
 
             }
         });
 
         Button help= findViewById(R.id.bHelp);
-        help.setText(getResources().getString(R.string.bHelp));
-
 
     }
 

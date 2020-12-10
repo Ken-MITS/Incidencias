@@ -44,4 +44,10 @@
 
     <!-- Settings -->
     <string name="lang">Language</string>
+    <string name="choose">Choose a language</string>
+    <string name="en">English</string>
+    <string name="sp">Spanish</string>
+    <string name="logOut">Log Out</string>
+    <string name="remember">Remember Password</string>
+    <string name="hint">User</string>
 </resources>
