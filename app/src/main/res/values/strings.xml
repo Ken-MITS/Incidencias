@@ -42,6 +42,7 @@
         <item>Media</item>
         <item>Alta</item>
     </string-array>
+    <string name="description">Descripción</string>
 
     <!-- Settings -->
     <string name="lang">Idioma</string>

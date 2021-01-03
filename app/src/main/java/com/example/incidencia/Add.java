@@ -1,11 +1,10 @@
 package com.example.incidencia;
 
-import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
-
 import androidx.fragment.app.Fragment;
 
+import android.text.format.DateUtils;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -17,7 +16,11 @@ import android.widget.Spinner;
 
 import com.example.incidencia.DB.IncidenciaDBHelper;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
+import java.util.Locale;
 
 public class Add extends Fragment{
     //Database
@@ -55,16 +58,23 @@ public class Add extends Fragment{
                 //EditText value into variable <titol> and changing it to string type.
                 EditText x = menu.findViewById(R.id.ETnombre);
                 String titol = x.getText().toString();
-                Log.i("prova","titol: "+ titol);
+
+                EditText editText= menu.findViewById(R.id.ETdescription);
+                String description = editText.getText().toString();
+                Log.i("provaLog", "Description: "+ description);
+
+                //DATE
+                SimpleDateFormat simpleDateFormat = new SimpleDateFormat("dd-MM-yyyy HH:mm:ss", Locale.getDefault());
+                String currentDate = simpleDateFormat.format(new Date());
+                Log.i("provaLog", "DATE: "+ currentDate);
 
                 //Getting spin value into <option> variable.
                 String option = spinner.getSelectedItem().toString();
-                //llistaIncidencies.add(new Incidencia(titol, option));
 
                 //DB
                 dbHelper= new IncidenciaDBHelper(getContext());
                 db =dbHelper.getWritableDatabase();
-                dbHelper.insertIncidencia(db, new Incidencia(titol, option));
+                dbHelper.insertIncidencia(db, new Incidencia(titol, option, description, currentDate));
 
                 Log.i("proves", "option SPINNER" + option);
                 getFragmentManager().beginTransaction().remove(Add.this).commit();

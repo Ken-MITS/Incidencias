@@ -18,8 +18,9 @@ public class IncidenciaDBHelper extends SQLiteOpenHelper {
     public static final int DATABASE_VERSION=1;
     public static final String DATABASE_NAME= "incidencias.db";
     private static final String SQL_CREATE_ENTRIES = "CREATE TABLE "+ TABLE_NAME+"("
-            +IncidenciaEntry.ID+" INTEGER PRIMARY KEY AUTOINCREMENT, "+ IncidenciaEntry.COLUMN_NAME_TITLE+" TEXT, " +
-            IncidenciaEntry.COLUMN_NAME_LEVEL +" TEXT)";
+            +IncidenciaEntry.ID+" INTEGER PRIMARY KEY AUTOINCREMENT, "+ IncidenciaEntry.COLUMN_NAME_TITLE+" TEXT, "
+            +IncidenciaEntry.COLUMN_NAME_LEVEL+" TEXT, " + IncidenciaEntry.COLUMN_NAME_DESCRIPTION+" TEXT, "
+            +IncidenciaEntry.COLUMN_NAME_DATE+" TEXT)";
 
     public IncidenciaDBHelper(Context context) {
         super(context, DATABASE_NAME, null, DATABASE_VERSION);
@@ -28,7 +29,6 @@ public class IncidenciaDBHelper extends SQLiteOpenHelper {
     @Override
     public void onCreate(SQLiteDatabase db) {
         db.execSQL(SQL_CREATE_ENTRIES);
-
 
     }
 
@@ -42,6 +42,8 @@ public class IncidenciaDBHelper extends SQLiteOpenHelper {
             ContentValues values = new ContentValues();
             values.put(IncidenciaEntry.COLUMN_NAME_TITLE, in.getNom());
             values.put(IncidenciaEntry.COLUMN_NAME_LEVEL, in.getPrioritat());
+            values.put(IncidenciaEntry.COLUMN_NAME_DESCRIPTION, in.getDescription());
+            values.put(IncidenciaEntry.COLUMN_NAME_DATE, in.getDate());
 
             db.insert(TABLE_NAME, null, values);
         }else{
@@ -58,15 +60,12 @@ public class IncidenciaDBHelper extends SQLiteOpenHelper {
         Cursor cursor = db.rawQuery(query, null);
         if (cursor.moveToFirst()){
             do{
-                Log.i("provaLog", "cursor getColumName 1: "+ cursor.getColumnName(1));
-                Log.i("provaLog", "cursor getString 1: "+ cursor.getString(1));
-                Log.i("provaLog", "cursor getColumName 2: "+ cursor.getColumnName(2));
-                Log.i("provaLog", "cursor getString 2: "+ cursor.getString(2));
-
                 //Create a new object with the values on the current cursor value. (So it's not really a new object)
                 Incidencia i = new Incidencia();
                 i.setNom(cursor.getString(1));
                 i.setPrioritat(cursor.getString(2));
+                i.setDescription(cursor.getString(3));
+                i.setDate(cursor.getString(4));
 
                 //insert into the returning ArrayList to pass it as the adapter parameter.
                 a.add(i);
@@ -83,6 +82,10 @@ public class IncidenciaDBHelper extends SQLiteOpenHelper {
         db.delete(TABLE_NAME, null, null);
         db.execSQL("delete from "+ TABLE_NAME);
         db.close();
+
+    }
+
+    public void showById(){
 
     }
 

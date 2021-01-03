@@ -84,6 +84,7 @@ public class Menu extends AppCompatActivity implements View.OnClickListener {
                             @Override
                             public void onClick(DialogInterface dialog, int which) {
                                 dbHelper.deleteIncidencias();
+
                                 Toast.makeText(getApplicationContext(), getResources().getString(R.string.toast), Toast.LENGTH_LONG).show();
 
                                 //Show the list again, but now it's empty.
