@@ -51,4 +51,12 @@
     <string name="remember">Remember Password</string>
     <string name="hint">User</string>
     <string name="description">Description</string>
+    <string name="priority">Priority</string>
+    <string name="date">Date</string>
+    <string name="status">Pending</string>
+    <string name="assigned">Assigned</string>
+    <string name="done">Done</string>
+    <string name="delete1">You are going to delete the incidence.</string>
+    <string name="deleteOne">To delete a incidence, hold it down</string>
+    <string name="deleteOneDialog">¿Are you sure to delete the incidence</string>
 </resources>

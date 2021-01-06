@@ -19,7 +19,7 @@
     <string name="bLogin">Acceder</string>
     <string name="logging">Accediendo</string>
     <string name="failed">Autentificación faillida</string>
-    <string name="remember">Recordar contrseña</string>
+    <string name="remember">Recordar contraseña</string>
     <string name="hint">Usuario</string>
 
     <!-- Menu Fragment-->
@@ -50,5 +50,13 @@
     <string name="en">Inglés</string>
     <string name="sp">Español</string>
     <string name="logOut">Salir</string>
+    <string name="priority">Prioridad</string>
+    <string name="date">Fecha</string>
+    <string name="status">Pendiente</string>
+    <string name="assigned">Assignado</string>
+    <string name="done">Realizado</string>
+    <string name="delete1">Estás a punto de borrar la incidencia.</string>
+    <string name="deleteOne">Para borrar una incidencia, mantegala pulsada</string>
+    <string name="deleteOneDialog">¿Estás seguro de querer borrar la incidencia</string>
 
 </resources>

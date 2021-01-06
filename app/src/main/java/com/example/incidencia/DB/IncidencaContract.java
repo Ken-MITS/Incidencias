@@ -12,6 +12,7 @@ public class IncidencaContract {
         //Nuevos dos campos
         public static final String COLUMN_NAME_DESCRIPTION = "description";
         public static final String COLUMN_NAME_DATE = "date";
+        public static final String COLUMN_NAME_STATUS = "status";
 
 
     }

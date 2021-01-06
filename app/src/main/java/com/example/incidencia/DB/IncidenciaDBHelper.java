@@ -10,8 +10,10 @@ import android.util.Log;
 import com.example.incidencia.DB.IncidencaContract.*;
 import com.example.incidencia.Incidencia;
 
+import java.lang.reflect.Array;
 import java.util.ArrayList;
 
+import static com.example.incidencia.DB.IncidencaContract.IncidenciaEntry.COLUMN_NAME_DATE;
 import static com.example.incidencia.DB.IncidencaContract.IncidenciaEntry.TABLE_NAME;
 
 public class IncidenciaDBHelper extends SQLiteOpenHelper {
@@ -20,7 +22,7 @@ public class IncidenciaDBHelper extends SQLiteOpenHelper {
     private static final String SQL_CREATE_ENTRIES = "CREATE TABLE "+ TABLE_NAME+"("
             +IncidenciaEntry.ID+" INTEGER PRIMARY KEY AUTOINCREMENT, "+ IncidenciaEntry.COLUMN_NAME_TITLE+" TEXT, "
             +IncidenciaEntry.COLUMN_NAME_LEVEL+" TEXT, " + IncidenciaEntry.COLUMN_NAME_DESCRIPTION+" TEXT, "
-            +IncidenciaEntry.COLUMN_NAME_DATE+" TEXT)";
+            +IncidenciaEntry.COLUMN_NAME_DATE+" TEXT, " + IncidenciaEntry.COLUMN_NAME_STATUS+" TEXT)" ;
 
     public IncidenciaDBHelper(Context context) {
         super(context, DATABASE_NAME, null, DATABASE_VERSION);
@@ -44,16 +46,17 @@ public class IncidenciaDBHelper extends SQLiteOpenHelper {
             values.put(IncidenciaEntry.COLUMN_NAME_LEVEL, in.getPrioritat());
             values.put(IncidenciaEntry.COLUMN_NAME_DESCRIPTION, in.getDescription());
             values.put(IncidenciaEntry.COLUMN_NAME_DATE, in.getDate());
+            values.put(IncidenciaEntry.COLUMN_NAME_STATUS, in.getStatus());
 
             db.insert(TABLE_NAME, null, values);
         }else{
             Log.i("provaLog", "Database is closed.");
         }
+
     }
 
     public ArrayList<Incidencia> showIncidencias(){
         ArrayList<Incidencia> a = new ArrayList<>();
-
         String query = "SELECT * FROM "+ TABLE_NAME;
         SQLiteDatabase db = this.getReadableDatabase();
 
@@ -66,6 +69,7 @@ public class IncidenciaDBHelper extends SQLiteOpenHelper {
                 i.setPrioritat(cursor.getString(2));
                 i.setDescription(cursor.getString(3));
                 i.setDate(cursor.getString(4));
+                i.setStatus(cursor.getString(5));
 
                 //insert into the returning ArrayList to pass it as the adapter parameter.
                 a.add(i);
@@ -85,9 +89,44 @@ public class IncidenciaDBHelper extends SQLiteOpenHelper {
 
     }
 
-    public void showById(){
+    public ArrayList<String> showByDate(String date){
+        ArrayList<String> arrayList = new ArrayList<>();
+        String query = "SELECT * FROM "+ TABLE_NAME+ " where date = \""+ date+"\"";
+        SQLiteDatabase db = this.getReadableDatabase();
+        Cursor cursor = db.rawQuery(query, null);
+        if (cursor.moveToFirst()){
+            do{
+                String i = cursor.getString(5);
+                arrayList.add(i);
+            }while (cursor.moveToNext());
+        }
+        cursor.close();
+        db.close();
+        return arrayList;
+    }
+
+    public void updateIncidencias(String date, String status){
+        SQLiteDatabase db = this.getWritableDatabase();
+
+        ContentValues values = new ContentValues();
+        values.put(IncidenciaEntry.COLUMN_NAME_STATUS, status);
+
+        db.update(TABLE_NAME, values, "date = ?" ,new String[]{date});
+
+        /*String query = "update incidencia set status = \""+ currentStatus+"\" where date = \""+date+"\"";
+        db.execSQL(query);*/
+        db.close();
+    }
+
+    public void deleteOne(String date){
+        SQLiteDatabase db = this.getWritableDatabase();
+        db.delete(TABLE_NAME, "date = ?", new String[]{date});
+        //db.execSQL("delete from "+ TABLE_NAME + " where date=\""+date+"\"");
+        db.close();
 
     }
+
+
 
 }
 

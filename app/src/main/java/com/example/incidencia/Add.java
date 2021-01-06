@@ -71,10 +71,14 @@ public class Add extends Fragment{
                 //Getting spin value into <option> variable.
                 String option = spinner.getSelectedItem().toString();
 
+                //Status
+                String status = getResources().getString(R.string.status);
+                Log.i("provaLog", "STATUS: "+ status);
+
                 //DB
                 dbHelper= new IncidenciaDBHelper(getContext());
                 db =dbHelper.getWritableDatabase();
-                dbHelper.insertIncidencia(db, new Incidencia(titol, option, description, currentDate));
+                dbHelper.insertIncidencia(db, new Incidencia(titol, option, description, currentDate, status));
 
                 Log.i("proves", "option SPINNER" + option);
                 getFragmentManager().beginTransaction().remove(Add.this).commit();

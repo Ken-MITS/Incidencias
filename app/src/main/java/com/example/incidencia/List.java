@@ -39,12 +39,12 @@ public class List extends Fragment {
         ArrayList<Incidencia> a;
         a = dbHelper.showIncidencias();
 
+        Log.i("provaLog", "list Incidencias size: "+a.size());
+
         final RecyclerView recyclerView = (RecyclerView) view.findViewById(R.id.recyclerView);
         RecyclerViewAdapter adapter = new RecyclerViewAdapter(a, getContext());
         recyclerView.setAdapter(adapter);
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
-
-
 
         return view;
     }
