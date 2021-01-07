@@ -67,4 +67,15 @@
         <item>@string/done</item>
     </string-array>
 
+    <!-- help -->
+    <string name="first">El primer botón sirve para listar las incidencias que tenemos actualmente.</string>
+    <string name="first1">En la lista se permite filtrar pot el estado con el filtrado de arriba a la derecha.</string>
+    <string name="first2">En caso de querer borrar una incidencia en concreto, se ha de mantener pulsado</string>
+    <string name="first3">Se puede clicar cada incidencia para verlas con más detalle</string>
+    <string name="first4">Para cambiar el estado, se tiene que clicar sobre el mismo y esta cambiará automáticamente.</string>
+    <string name="second">El segundo botón nos permite añadir nuevas incidencias a la base de datos.</string>
+    <string name="third">El tercer botón borrará todas las incidencias.</string>.
+    <string name="fourth">El símbolo de arriba a la derecha es la configuración, permite cambiar de idioma y cerrar sesión</string>
+
+
 </resources>

@@ -122,8 +122,17 @@ public class Menu extends AppCompatActivity implements View.OnClickListener {
             }
         });
 
-        ImageView help= findViewById(R.id.bHelp);
+        final ImageView help= findViewById(R.id.bHelp);
+        help.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                FragmentManager menuManager = getSupportFragmentManager();
+                Fragment help = new Help();
+                menuManager.beginTransaction().replace(R.id.mainFragment, help).addToBackStack(null).commit();
 
+                settings.setVisibility(View.INVISIBLE);
+            }
+        });
 
 
     }

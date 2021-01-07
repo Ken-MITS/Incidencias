@@ -67,4 +67,12 @@
         <item>@string/assigned</item>
         <item>@string/done</item>
     </string-array>
+    <string name="first1">Incidences can be filtered by their status with the filter up to the right.</string>
+    <string name="first">The first button is used to list all the incidences.</string>
+    <string name="first2">In case you want to delete a specific incidence, you have to hold it down.</string>
+    <string name="first3">Every incidence has their own details by clicking them.</string>
+    <string name="first4">To change the status, you just need to click the status and it will change automatically.</string>
+    <string name="second">The second button allows us add new incidences to the database.</string>
+    <string name="third">The third button will erase all incidences.</string>
+    <string name="fourth">The configuration is in the icon at the top right, allows us to change the language and logging out.</string>
 </resources>

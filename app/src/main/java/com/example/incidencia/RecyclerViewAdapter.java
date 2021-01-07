@@ -91,7 +91,6 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(context, "Test click"+String.valueOf(holder.getAdapterPosition()),Toast.LENGTH_SHORT).show();
                 segundoFragment=true;
 
                 AppCompatActivity activity = (AppCompatActivity)v.getContext();

@@ -50,6 +50,8 @@ public class Add extends Fragment{
         // Apply the adapter to the spinner
         spinner.setAdapter(adapter);
 
+
+
         final Button buttonAfegir = menu.findViewById(R.id.buttonAfegir);
         buttonAfegir.setText(getResources().getString(R.string.bAdd));
 

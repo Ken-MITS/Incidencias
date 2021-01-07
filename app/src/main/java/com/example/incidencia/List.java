@@ -43,16 +43,14 @@ public class List extends Fragment {
         a = dbHelper.showIncidencias();
 
         final RecyclerView recyclerView = (RecyclerView) view.findViewById(R.id.recyclerView);
-        RecyclerViewAdapter adapter = new RecyclerViewAdapter(a, getContext());
-        recyclerView.setAdapter(adapter);
-        recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
+
 
         final Spinner spinner = (Spinner) view.findViewById(R.id.spinner2);
         ArrayAdapter<CharSequence> spinnerAdapter= ArrayAdapter.createFromResource(getActivity(), R.array.statusFilter, android.R.layout.simple_spinner_item);
         spinnerAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spinner.setAdapter(spinnerAdapter);
 
-        spinner.setSelection(0);
+        //spinner.setSelection(1);
 
         spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override

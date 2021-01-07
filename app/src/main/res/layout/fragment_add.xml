@@ -17,21 +17,25 @@
         android:layout_marginLeft="36dp"
         android:layout_marginTop="20dp"
         android:ems="10"
+        android:padding="5dp"
         android:gravity="start|top"
         android:inputType="textMultiLine"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/description" />
+        app:layout_constraintTop_toBottomOf="@+id/description"
+        android:background="@drawable/item_container"/>
 
     <Button
         android:id="@+id/buttonAfegir"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_height="30dp"
         android:layout_marginStart="36dp"
         android:layout_marginLeft="36dp"
         android:layout_marginTop="20dp"
         android:text="@string/bAdd"
+        android:textColor="@color/color0"
         app:layout_constraintStart_toEndOf="@+id/ETdescription"
-        app:layout_constraintTop_toBottomOf="@+id/description" />
+        app:layout_constraintTop_toBottomOf="@+id/description"
+        android:background="@drawable/item_container"/>
 
     <TextView
         android:id="@+id/description"
@@ -41,6 +45,7 @@
         android:layout_marginLeft="36dp"
         android:layout_marginTop="84dp"
         android:text="@string/description"
+        android:textColor="@color/white"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/ETnombre" />
 
@@ -52,8 +57,23 @@
         android:layout_marginLeft="36dp"
         android:layout_marginTop="104dp"
         android:text="@string/title"
+        android:textColor="@color/color3"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
+
+    <EditText
+        android:id="@+id/ETnombre"
+        android:layout_width="150dp"
+        android:layout_height="40dp"
+        android:layout_marginStart="36dp"
+        android:layout_marginLeft="36dp"
+        android:layout_marginTop="12dp"
+        android:padding="5dp"
+        android:background="@drawable/item_container"
+        android:ems="10"
+        android:inputType="textPersonName"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/titolView" />
 
     <Spinner
         android:id="@+id/spinner"
@@ -61,24 +81,14 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="36dp"
         android:layout_marginLeft="36dp"
-        android:layout_marginTop="24dp"
+        android:layout_marginTop="28dp"
+        android:backgroundTint="@color/color4"
+
         android:prompt="@string/app_name"
         app:layout_constraintStart_toEndOf="@+id/ETnombre"
         app:layout_constraintTop_toBottomOf="@+id/titolView">
 
     </Spinner>
-
-    <EditText
-        android:id="@+id/ETnombre"
-        android:layout_width="150dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="36dp"
-        android:layout_marginLeft="36dp"
-        android:layout_marginTop="8dp"
-        android:ems="10"
-        android:inputType="textPersonName"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/titolView" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
