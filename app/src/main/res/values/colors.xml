@@ -9,4 +9,12 @@
     <color name="orange">#ffa500</color>
     <color name="green">#32cd32</color>
 
+    <!-- Color palette for UI -->
+    <color name="color0">#07509F</color>
+    <color name="color1">#07689F</color>
+    <color name="color2">#A2D5F2</color>
+    <color name="color3">#FAFAFA</color>
+    <color name="color4">#FF7E67</color>
+    <color name="yellow">#FFEB3B</color>
+
 </resources>

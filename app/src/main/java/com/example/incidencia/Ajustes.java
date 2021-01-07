@@ -3,6 +3,7 @@ package com.example.incidencia;
 import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.res.Configuration;
 import android.content.res.Resources;
@@ -85,6 +86,7 @@ public class Ajustes extends Fragment {
                 editor.apply();
 
                 getActivity().finish();
+                onDestroy();
             }
         });
 
@@ -122,4 +124,6 @@ public class Ajustes extends Fragment {
 
 
     }
+
+
 }

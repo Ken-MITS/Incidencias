@@ -11,7 +11,9 @@ import androidx.fragment.app.FragmentTransaction;
 
 import android.content.Context;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.database.sqlite.SQLiteDatabase;
+import android.media.Image;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -29,6 +31,7 @@ public class Menu extends AppCompatActivity implements View.OnClickListener {
     private SQLiteDatabase db;
     private Context context;
     ImageView settings;
+    public static boolean segundoFragment=false;
 
     //Dialog
     AlertDialog.Builder builder;
@@ -42,7 +45,7 @@ public class Menu extends AppCompatActivity implements View.OnClickListener {
         //Dialog
         builder = new AlertDialog.Builder(this);
 
-        Button bAdd = findViewById(R.id.bAdd);
+        ImageView bAdd = findViewById(R.id.bAdd);
         bAdd.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 Log.i("proves", "button afegir click.");
@@ -54,24 +57,26 @@ public class Menu extends AppCompatActivity implements View.OnClickListener {
                 //menuTransaction.replace(R.id.mainFragment, add);
                 //menuTransaction.commit();
                 menuManager.beginTransaction().replace(R.id.mainFragment, add).commit(); //Equivale a las 3 anteriores.
+                settings.setVisibility(View.INVISIBLE);
             }
         });
 
 
-        Button bList = findViewById(R.id.bList);
+        ImageView bList = findViewById(R.id.bList);
         bList.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 FragmentManager menuManager = getSupportFragmentManager();
                 Fragment list = new List();
                 menuManager.beginTransaction().replace(R.id.mainFragment, list).commit();
+                settings.setVisibility(View.INVISIBLE);
             }
         });
 
         dbHelper= new IncidenciaDBHelper(getBaseContext());
         db =dbHelper.getWritableDatabase();
 
-        Button bDelete = findViewById(R.id.bDelete);
+        ImageView bDelete = findViewById(R.id.bDelete);
         bDelete.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -87,10 +92,6 @@ public class Menu extends AppCompatActivity implements View.OnClickListener {
 
                                 Toast.makeText(getApplicationContext(), getResources().getString(R.string.toast), Toast.LENGTH_LONG).show();
 
-                                //Show the list again, but now it's empty.
-                                FragmentManager menuManager = getSupportFragmentManager();
-                                Fragment list = new List();
-                                menuManager.beginTransaction().replace(R.id.mainFragment, list).commit();
                             }
                         })
                         .setNegativeButton("No", new DialogInterface.OnClickListener() {
@@ -116,16 +117,41 @@ public class Menu extends AppCompatActivity implements View.OnClickListener {
                 Fragment ajustes = new Ajustes();
                 menuManager.beginTransaction().replace(R.id.mainFragment, ajustes).addToBackStack(null).commit();
 
+                settings.setVisibility(View.INVISIBLE);
+
             }
         });
 
-        Button help= findViewById(R.id.bHelp);
+        ImageView help= findViewById(R.id.bHelp);
+
+
 
     }
 
     @Override
     public void onClick(View v) {
 
+    }
+
+    public void onBackPressed() {
+        /*Intent i = new Intent(getApplicationContext(),Menu.class);
+        startActivity(i);*/
+        Log.i("provaLog", "segundoFragment en metodo: "+segundoFragment);
+
+        if (segundoFragment){
+            Log.i("provaLog", "pasa por el onBackPressed cuando segundoFragment=true.");
+            segundoFragment=false;
+            FragmentManager menuManager = getSupportFragmentManager();
+            Fragment list = new List();
+            menuManager.beginTransaction().replace(R.id.mainFragment, list).commit();
+            settings.setVisibility(View.INVISIBLE);
+            return;
+        }else {
+            Log.i("provaLog", "Pasa por el ONBACKPRESSED");
+            finish();
+            startActivity(getIntent());
+
+        }
     }
 }
 

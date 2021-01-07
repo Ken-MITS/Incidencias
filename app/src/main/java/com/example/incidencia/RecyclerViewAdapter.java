@@ -8,7 +8,10 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.ImageView;
+import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -24,6 +27,8 @@ import com.example.incidencia.DB.IncidenciaDBHelper;
 
 import java.util.ArrayList;
 
+import static com.example.incidencia.Menu.segundoFragment;
+
 public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapter.ViewHolder> {
     protected ArrayList<Incidencia> lista;
     private Context context;
@@ -31,6 +36,8 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
     private IncidenciaDBHelper dbHelper;
     private SQLiteDatabase db;
     private ImageView colorStatus;
+    private Spinner spinner;
+
 
     public RecyclerViewAdapter(ArrayList<Incidencia> lista, Context context) {
         this.lista = lista;
@@ -42,18 +49,15 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View view= LayoutInflater.from(parent.getContext()).inflate(R.layout.item_list, parent, false);
         final ViewHolder holder = new ViewHolder(view);
-
-        dbHelper= new IncidenciaDBHelper(context);
-        db =dbHelper.getWritableDatabase();
-
+        dbHelper= new IncidenciaDBHelper(holder.itemView.getContext());
+        db = dbHelper.getWritableDatabase();
 
         holder.itemView.setOnLongClickListener(new View.OnLongClickListener() {
             @Override
             public boolean onLongClick(final View v) {
-                Log.i("provaLog", "position: "+ holder.getAdapterPosition());
                 String mensaje = holder.itemView.getResources().getString(R.string.deleteOneDialog);
                 mensaje=mensaje +" "+lista.get(holder.getAdapterPosition()).getNom()+"?";
-                Log.i("provaLog", "mensaje: "+mensaje);
+
 
                 builder = new AlertDialog.Builder(context);
                 builder.setMessage(mensaje)
@@ -61,11 +65,10 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
                         .setPositiveButton(holder.itemView.getResources().getText(R.string.yes), new DialogInterface.OnClickListener() {
                             @Override
                             public void onClick(DialogInterface dialog, int which) {
-                                deleteFromList(holder.getAdapterPosition());
+                                Log.i("provaLog", "AdapterPosition: "+holder.getAdapterPosition());
+                                deleteFromList(holder.getAdapterPosition(), dbHelper);
 
-                                Fragment list = new List();
-                                AppCompatActivity activity = (AppCompatActivity)v.getContext();
-                                activity.getSupportFragmentManager().beginTransaction().replace(R.id.mainFragment, list).commit();
+                                showList(v);
                             }
                         })
                         .setNegativeButton("No", new DialogInterface.OnClickListener() {
@@ -78,11 +81,8 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
                 alertDialog.setTitle(holder.itemView.getResources().getString(R.string.dialogTitle));
                 alertDialog.show();
 
+                showList(v);
 
-
-                Fragment list = new List();
-                AppCompatActivity activity = (AppCompatActivity)v.getContext();
-                activity.getSupportFragmentManager().beginTransaction().replace(R.id.mainFragment, list).commit();
                 return true;
             }
         });
@@ -92,6 +92,8 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
             @Override
             public void onClick(View v) {
                 Toast.makeText(context, "Test click"+String.valueOf(holder.getAdapterPosition()),Toast.LENGTH_SHORT).show();
+                segundoFragment=true;
+
                 AppCompatActivity activity = (AppCompatActivity)v.getContext();
                 Fragment detalle = new Detalle(holder.getAdapterPosition());
                 activity.getSupportFragmentManager().beginTransaction().replace(R.id.mainFragment, detalle).addToBackStack(null).commit();
@@ -105,10 +107,7 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
         holder.nivel.setText(lista.get(position).getPrioritat());
         holder.nombre.setText(lista.get(position).getNom());
 
-
         setStatus(holder, holder.getAdapterPosition());
-
-        Log.i("provaLog", "adapterposition: "+holder.getAdapterPosition());
     }
 
     @Override
@@ -125,16 +124,20 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
             nivel= itemView.findViewById(R.id.TVnivel);
             colorStatus = itemView.findViewById(R.id.colorStatus);
             layout=itemView.findViewById(R.id.frameLayout);
+
         }
     }
 
-    public void deleteFromList(int position){
+    public void deleteFromList(int position, IncidenciaDBHelper dbHelper ){
+
         String date = lista.get(position).getDate();
+        Log.i("provaLog", "position delete: "+position);
+        Log.i("provaLog", "lista.size: "+ lista.size());
+
         dbHelper.deleteOne(date);
         lista.remove(position);
         notifyItemRemoved(position);
         notifyItemRangeChanged(position, lista.size());
-        db.close();
     }
 
     public void setStatus(ViewHolder holder, int position){
@@ -149,6 +152,12 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
             colorStatus.setColorFilter(green);
         }
 
+    }
+
+    public void showList(View v){
+        Fragment list = new List();
+        AppCompatActivity activity = (AppCompatActivity)v.getContext();
+        activity.getSupportFragmentManager().beginTransaction().replace(R.id.mainFragment, list).commit();
     }
 
 }

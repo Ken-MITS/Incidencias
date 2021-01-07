@@ -82,6 +82,7 @@ public class Add extends Fragment{
 
                 Log.i("proves", "option SPINNER" + option);
                 getFragmentManager().beginTransaction().remove(Add.this).commit();
+                //getActivity().onBackPressed();
 
             }
         });
@@ -95,4 +96,6 @@ public class Add extends Fragment{
         //db.close();
         super.onDestroyView();
     }
+
+
 }

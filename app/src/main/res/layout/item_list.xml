@@ -5,7 +5,9 @@
     android:id="@+id/frameLayout2"
     android:layout_width="match_parent"
     android:layout_height="80dp"
-    tools:context=".List">
+    tools:context=".List"
+    android:background="@drawable/item_container"
+    android:layout_marginBottom="7dp">
 
     <TextView
         android:id="@+id/TVnivel"

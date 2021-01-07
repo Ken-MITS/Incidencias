@@ -13,8 +13,11 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Spinner;
 
 import com.example.incidencia.DB.IncidenciaDBHelper;
 
@@ -39,12 +42,48 @@ public class List extends Fragment {
         ArrayList<Incidencia> a;
         a = dbHelper.showIncidencias();
 
-        Log.i("provaLog", "list Incidencias size: "+a.size());
-
         final RecyclerView recyclerView = (RecyclerView) view.findViewById(R.id.recyclerView);
         RecyclerViewAdapter adapter = new RecyclerViewAdapter(a, getContext());
         recyclerView.setAdapter(adapter);
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
+
+        final Spinner spinner = (Spinner) view.findViewById(R.id.spinner2);
+        ArrayAdapter<CharSequence> spinnerAdapter= ArrayAdapter.createFromResource(getActivity(), R.array.statusFilter, android.R.layout.simple_spinner_item);
+        spinnerAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        spinner.setAdapter(spinnerAdapter);
+
+        spinner.setSelection(0);
+
+        spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                String option = (String) spinner.getSelectedItem();
+                int optionPosition = spinner.getSelectedItemPosition();
+                ArrayList<Incidencia> a = new ArrayList<>();
+                //a = dbHelper.showByPriority(option);
+
+                if (optionPosition == 0){
+                    a =dbHelper.showIncidencias();
+                }else if (optionPosition == 1){
+                    a=dbHelper.showByPriority(getResources().getString(R.string.status));
+                }else if (optionPosition == 2){
+                    a=dbHelper.showByPriority(getResources().getString(R.string.assigned));
+                }else if (optionPosition == 3) {
+                    a=dbHelper.showByPriority(getResources().getString(R.string.done));
+                }
+
+                RecyclerViewAdapter adapter = new RecyclerViewAdapter(a, getContext());
+                recyclerView.setAdapter(adapter);
+                recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
+
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+                spinner.setSelection(0);
+            }
+        });
+
 
         return view;
     }

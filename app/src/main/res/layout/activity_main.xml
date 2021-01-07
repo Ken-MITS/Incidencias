@@ -4,7 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".MainActivity">
+    tools:context=".MainActivity"
+    android:background="@color/color0">
 
     <Button
         android:id="@+id/button_guardar"
@@ -20,25 +21,27 @@
     <EditText
         android:id="@+id/TXTUsername"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_height="50dp"
         android:layout_marginTop="92dp"
         android:ems="10"
         android:hint="@string/hint"
         android:inputType="textPersonName"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/vLogin" />
+        app:layout_constraintTop_toBottomOf="@+id/vLogin"
+        android:background="@drawable/main_buttons"/>
 
     <EditText
         android:id="@+id/TXTPassword"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_height="50dp"
         android:layout_marginTop="20dp"
         android:ems="10"
         android:inputType="textPassword"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/TXTUsername" />
+        app:layout_constraintTop_toBottomOf="@+id/TXTUsername"
+        android:background="@drawable/main_buttons"/>
 
     <TextView
         android:id="@+id/vLogin"
@@ -69,6 +72,7 @@
         android:layout_marginTop="40dp"
         android:hint="@string/remember"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/TXTPassword" />
+        app:layout_constraintTop_toBottomOf="@+id/TXTPassword"
+        />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

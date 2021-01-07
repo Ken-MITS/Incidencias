@@ -121,9 +121,35 @@ public class IncidenciaDBHelper extends SQLiteOpenHelper {
     public void deleteOne(String date){
         SQLiteDatabase db = this.getWritableDatabase();
         db.delete(TABLE_NAME, "date = ?", new String[]{date});
-        //db.execSQL("delete from "+ TABLE_NAME + " where date=\""+date+"\"");
+        db.execSQL("delete from "+ TABLE_NAME + " where date=\""+date+"\"");
         db.close();
 
+    }
+
+    public ArrayList<Incidencia> showByPriority(String priority){
+        ArrayList<Incidencia> a = new ArrayList<>();
+        String query = "SELECT * FROM "+ TABLE_NAME + " where status=\""+priority+"\"";
+        SQLiteDatabase db = this.getReadableDatabase();
+
+        Cursor cursor = db.rawQuery(query, null);
+        if (cursor.moveToFirst()){
+            do{
+                //Create a new object with the values on the current cursor value. (So it's not really a new object)
+                Incidencia i = new Incidencia();
+                i.setNom(cursor.getString(1));
+                i.setPrioritat(cursor.getString(2));
+                i.setDescription(cursor.getString(3));
+                i.setDate(cursor.getString(4));
+                i.setStatus(cursor.getString(5));
+
+                //insert into the returning ArrayList to pass it as the adapter parameter.
+                a.add(i);
+
+            }while (cursor.moveToNext());
+        }
+        cursor.close();
+        db.close();
+        return a;
     }
 
 

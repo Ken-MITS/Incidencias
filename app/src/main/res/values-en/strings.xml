@@ -57,6 +57,14 @@
     <string name="assigned">Assigned</string>
     <string name="done">Done</string>
     <string name="delete1">You are going to delete the incidence.</string>
-    <string name="deleteOne">To delete a incidence, hold it down</string>
+    <string name="deleteOne">Hold down to delete</string>
     <string name="deleteOneDialog">¿Are you sure to delete the incidence</string>
+
+    <string name="all">All</string>
+    <string-array name="statusFilter">
+        <item>All</item>
+        <item>@string/status</item>
+        <item>@string/assigned</item>
+        <item>@string/done</item>
+    </string-array>
 </resources>

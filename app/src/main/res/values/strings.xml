@@ -56,7 +56,15 @@
     <string name="assigned">Assignado</string>
     <string name="done">Realizado</string>
     <string name="delete1">Estás a punto de borrar la incidencia.</string>
-    <string name="deleteOne">Para borrar una incidencia, mantegala pulsada</string>
+    <string name="deleteOne">Mantener pulsado para borrar</string>
     <string name="deleteOneDialog">¿Estás seguro de querer borrar la incidencia</string>
+
+    <string name="all">Todo</string>
+    <string-array name="statusFilter">
+        <item>@string/all</item>
+        <item>@string/status</item>
+        <item>@string/assigned</item>
+        <item>@string/done</item>
+    </string-array>
 
 </resources>
